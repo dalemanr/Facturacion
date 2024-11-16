@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <form th:action="@{/factura/form}" th:object="${factura}" method="post">
+                <input disabled='disabled' th:value="${factura.client.name} +' '+${factura.client.lastname}"
+                       class="form-control"/>
+                <input type="text" th:field="*{description}" class="form-control"
+                       placeholder="Descripcion de la factura" th:errorclass="'form-control is-invalid'"/>
+
+                <input type="text" th:field="*{observacion}" class="form-control"
+                       placeholder="Observacion de la factura">
+                <input type="text" name="buscar_producto" id="buscar_producto" placeholder="Buscar producto"
+                       class="form-control"/>
+                <table th:replace="factura/plantilla-items :: itemsFactura"></table>
+
+                <table id="cargarItemProductos" class="table table-sm table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <h5>Total: $<span class="badge badge-secondary" id="gran_total">0</span></h5>
+
+                <input type="submit" th:value="${title}" class="btn btn-secondary" value="Guardar">
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+<script th:replace="factura/js/autocomplete-productos :: javascript"></script>
+</body>
+</html>
