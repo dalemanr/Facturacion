@@ -6,8 +6,8 @@ el valor subtotal y total de la factura.
 
 ## Tecnologias Utilizadas
 
--**Spring Boot**
--**mysql**
--**html**
--**css**
--**javascript**
+- **Spring Boot**
+- **mysql**
+- **html**
+- **css**
+- **javascript**
